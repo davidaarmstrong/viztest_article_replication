@@ -1,0 +1,4 @@
+data/raw/muraoka_rosas_replication/CSES_All_Merged.RData filter=lfs diff=lfs merge=lfs -text
+data/raw/muraoka_rosas_replication/Center_Stan_July10.RData filter=lfs diff=lfs merge=lfs -text
+data/raw/muraoka_rosas_replication/Left_Stan_July10.RData filter=lfs diff=lfs merge=lfs -text
+data/raw/muraoka_rosas_replication/Right_Stan_July10.RData filter=lfs diff=lfs merge=lfs -text
