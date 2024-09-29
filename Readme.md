@@ -105,6 +105,7 @@ The `Master.do` file installs the two necessary packages and then runs the Stata
 
 The file structure is as follows: 
 
+```
 ├── Readme.md: This file
 ├── Master.R: Main R file that calls all individual R files
 ├── Master.do: Main .do file that calls all individual .do files
@@ -164,4 +165,4 @@ The file structure is as follows:
     ├── gibson_text_discussion.txt
     ├── TableA1.tex
     └── TableA2.tex
-
+```
