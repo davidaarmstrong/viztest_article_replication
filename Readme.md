@@ -16,10 +16,7 @@ The code uses `rstan` to estimate and interact with Bayesian analyses.  Installi
 
 Only files `code/12_Gill_Retail_Sales_Analysis.R`, `code/13_FigureA7.R` and `code/16_FigureA10.R` deal with Bayesian analyses.  You could install the relevant packages, minus `rstan`, then run all files except those mentioned directly above to generate the Frequentist results.
 
-The replication archive uses `renv` an environment to ensure replicability by keeping track of packages and versions used.  The easiest way to replicate our work is to download the archive in full.  There are two ways to interact with the `renv` package. 
-
-1. Open the .Rproj file in RStudio.  Rstudio should recognize the use of `renv()` and give a message indicating that `renv::status()` will identify gaps in your existing package library.  You can install all the relevant packages with: `renv::restore()`.  This will download the correct versions of the packages into this particular project without changing packages or versions in your global installation of R.  
-2. In R, change the working directory to the downloaded archive.  Invoke `renv::restore()`.  You will likely get a message indicating that this is your first time using `renv` and a message about how it works and what changes it makes to the system.  You will be asked to proceed, indicate "y" for Yes.  You will then be asked how you want to proceed, select "Activate the project and use the project library".  This will download the correct versions of the packages into this particular project without changing packages or versions in your global installation of R.   
+The replication archive uses `renv` an environment to ensure replicability by keeping track of packages and versions used.  The easiest way to replicate our work is to download the archive in full.  In R, ensure the working directory is set to the downloaded archive.  Invoke `renv::restore()`.  You may get a message indicating that this is your first time using `renv` and a message about how it works and what changes it makes to the system.  You will be asked to proceed, indicate "y" for Yes.  You will then be asked how you want to proceed, select "Activate the project and use the project library".  This will download the correct versions of the packages into this particular project without changing packages or versions in your global installation of R.   
 
 The `VizTest` package is installed from the author's GitHub page.  The default way GitHub packages are installed by `renv` requires a github personal access token (PAT) that is either set through an environment variable (discouraged) or with the `gitcreds` package.  If you do not wish to proceed that way, let `renv::restore()` finish - it will indicate an error regarding GitHub credentials when it tries to install `VizTest`, but the remainder of the installation should succeed.  After that, you can install the `VizTest` package directly with: 
 
@@ -73,6 +70,8 @@ loaded via a namespace (and not attached):
 [66] nlme_3.1-164         checkmate_2.3.2      zoo_1.8-12           pkgconfig_2.0.3 
 ```
 
+
+
 ### Stata
 
 The software demonstration for the package has Stata code in addition to R code for the Frequentist analysis.  We used Stata 18.0 for the computation, though we it relies primarily on Stata and Mata matrix operations, so it will likely work on earlier versions as well.  The code also uses `margins` and `marginsplot` which would require at least version 12.  For Stata you'll need to install the following: 
@@ -81,8 +80,6 @@ The software demonstration for the package has Stata code in addition to R code 
 net install viztest, from("https://raw.githubusercontent.com/davidaarmstrong/viztest_stata/main/") 
 ssc install matsort
 ```
-
-Computation time for the 
 
 ## Data
 

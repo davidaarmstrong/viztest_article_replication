@@ -22,7 +22,9 @@ library(ggeffects)
 library(gridExtra)
 library(tidybayes) 
 library(posterior)
-library(rstan) # Only required for file 12_Gill_Retail_Sales_Analysis.R
+# rstan is required for file code/12_Gill_Retail_Sales_Analysis.R, 
+# code/13_FigureA7.R, code/16_FigureA10.R
+library(rstan) 
 library(BaM)
 library(xtable)
 library(remotes)
@@ -33,10 +35,10 @@ filter <- function(...)dplyr::filter(...)
 letter_plot <- function(fits, letters){
   if(!(all(c("x", "predicted", "conf.low", "conf.high") %in% names(fits))))stop("x, predicted, conf.low and conf.high need to be variables in the 'fits' data frame.")
   lmat <- letters
-  g1 <- ggplot(fits, aes_string(y="x")) +
-    geom_errorbarh(aes_string(xmin="conf.low", xmax="conf.high"),
+  g1 <- ggplot(fits, aes(y=.data[["x"]])) +
+    geom_errorbarh(aes(xmin=.data[["conf.low"]], xmax=.data[["conf.high"]]),
                    height=0) +
-    geom_point(aes_string(x="predicted"))
+    geom_point(aes(x=.data[["predicted"]]))
   p <- ggplot_build(g1)
   rgx <- p$layout$panel_params[[1]]$x.range
   diffrg <- diff(rgx)
@@ -58,12 +60,12 @@ letter_plot <- function(fits, letters){
   ldat <- as_tibble(lmat, rownames="x")
   dat <- left_join(fits, ldat)
   dat$x <- fits$x
-  out <- ggplot(dat, aes_string(y="x")) +
-    geom_errorbarh(aes_string(xmin="conf.low", xmax="conf.high"), height=0) +
-    geom_point(aes_string(x="predicted"))
+  out <- ggplot(dat, aes(y=.data[["x"]])) +
+    geom_errorbarh(aes(xmin=.data[["conf.low"]], xmax=.data[["conf.high"]]), height=0) +
+    geom_point(aes(x=.data[["predicted"]]))
   obs_lets <- colnames(lmat)
   for(i in 1:length(obs_lets)){
-    out <- out + geom_point(mapping=aes_string(x=obs_lets[i]), size=2.5)
+    out <- out + geom_point(mapping=aes(x=.data[[obs_lets[i]]]), size=2.5)
   }
   out <- out + geom_vline(xintercept=vl, lty=2)+
     scale_x_continuous(breaks=prty,
